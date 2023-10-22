@@ -1,0 +1,10 @@
+# IDE Specific
+.idea/
+.vscode/
+
+# Mac OS
+.DS_Store
+
+# Node Specific
+.npmrc
+node_modules
