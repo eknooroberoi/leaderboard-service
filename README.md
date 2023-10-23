@@ -97,11 +97,11 @@ Status Code - 4xx/5xx
 
 ### Data Definition
 ```sql
-# Create Database for service
+-- Create Database for service
 CREATE DATABASE leaderboard_service;
 USE leaderboard_service;
 
-# Create Tables
+-- Create Tables
 CREATE TABLE game (
     id VARCHAR(50) NOT NULL,
     name VARCHAR(255) DEFAULT 'game',
