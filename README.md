@@ -55,26 +55,32 @@ Status Code :- 200 (OK)
 ```json
 {
     "gameId": "6ba7b810-9dad-11d1-80b4-00c04fd430c8",
+    "gameName": "car-racing",
     "topScorers": [
         {
             "userId": "14191",
+            "userName": "user14191",
             "score": 100
 
         },
         {
             "userId": "14613",
+            "userName": "user14613",
             "score": 100
         },
         {
             "userId": "49609",
+            "userName": "user49609",
             "score": 80
         },
         {
             "userId": "14847",
+            "userName": "user14847",
             "score": 30
         },
         {
             "userId": "13307",
+            "userName": "user13307",
             "score": 10
         }
     ],
@@ -128,7 +134,7 @@ CREATE TABLE leaderboard (
 
 ### Queries
 
-Get Top **_n_**  scores for given _**gameId**_ 
+Get Top **_n(limit)_**  scores for given _**gameId**_ 
 ```sql
 SELECT user_id, score
 FROM leaderboard
@@ -140,10 +146,11 @@ LIMIT :n;
 ## Local Development
 
 1. Clone the repo and change directory to leaderboard-service
+2. Run `nvm use`
 3. Run `npm ci` in terminal
 4. Run `npx tsc` in terminal
 5. javascript file is `build/src/index.js`
-6. Compile Typescript with `leaderboard-service/tsconfig.json` config file before launch
+6. Run `node build/src/index.js`
 7. This will start the Node.js server at `localhost:3000`
 
 Swagger : http://localhost:3000/api-docs
