@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2023-10-24
+
+- Implemented Initial version of `leaderboard-service` returning a dummy response
+- Implemented the overall structure of the service defining core classes and data objects
+- Implemented Kafka consumer
+- Added setup for local devEnv
+
 ## [0.1.1] - 2023-10-23
 
 - Updated README
