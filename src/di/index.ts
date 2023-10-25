@@ -5,6 +5,8 @@ import {IQueueRepo} from "../repository";
 import {KafkaConsumer} from "../driver/kafka";
 import config from "../config/config";
 import {ConfigDTO, KafkaConsumerConfigDTO} from "../models";
+import MySQLDataSource from "../driver/mysql";
+import IDatabaseRepo from "../repository/interfaces/IDatabaseRepo";
 interface ICradle {
     //Utility
     config: ConfigDTO
@@ -21,6 +23,7 @@ interface ICradle {
 
     // Repositories
     queueImpl: IQueueRepo
+    databaseImpl: IDatabaseRepo
 }
 
 const container: AwilixContainer<ICradle> = createContainer<ICradle>({injectionMode: "CLASSIC"});
@@ -40,7 +43,8 @@ container.register({
     getTopScoresControllerPublic: asClass(GetTopScoresControllerPublic, getScope()),
 
     // Repositories
-    queueImpl: asClass(KafkaConsumer, getScope())
+    queueImpl: asClass(KafkaConsumer, getScope()),
+    databaseImpl: asClass(MySQLDataSource, getScope())
 });
 
 function getScope(): {lifetime: LifetimeType} {

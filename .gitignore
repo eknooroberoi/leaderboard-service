@@ -8,3 +8,6 @@
 # Node Specific
 .npmrc
 node_modules
+
+# devEnv
+devEnv/.tmp

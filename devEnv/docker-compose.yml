@@ -3,6 +3,19 @@
 ---
 version: '1'
 services:
+  mysql:
+    image: mysql:8
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root_pwd
+      MYSQL_DATABASE: leaderboard_service
+      MYSQL_USER: default_user
+      MYSQL_PASSWORD: default_pwd
+    ports:
+      - "3306:3306"
+    volumes:
+      - .tmp/mysql-data:/var/lib/mysql
+
   zoo1:
     image: confluentinc/cp-zookeeper:7.3.2
     hostname: zoo1
@@ -13,6 +26,8 @@ services:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_SERVER_ID: 1
       ZOOKEEPER_SERVERS: zoo1:2888:3888
+    depends_on:
+      - mysql
 
   kafka1:
     image: confluentinc/cp-kafka:7.3.2
@@ -38,6 +53,7 @@ services:
       KAFKA_ALLOW_EVERYONE_IF_NO_ACL_FOUND: "true"
     depends_on:
       - zoo1
+      - mysql
 
   kafka-ui:
     container_name: kafka-ui
@@ -47,6 +63,7 @@ services:
     depends_on:
       - zoo1
       - kafka1
+      - mysql
     environment:
       KAFKA_CLUSTERS_0_NAME: local
       KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka1:19092

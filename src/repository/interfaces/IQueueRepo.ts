@@ -1,5 +1,6 @@
+import {MessageDTO} from "../../models";
 
 export default interface IQueueRepo{
-    startBatchConsumer(processFn: (msg: Buffer | null) => Promise<void> ): Promise<void>;
+    startBatchConsumer(processFn: (msg: MessageDTO) => Promise<void> ): Promise<void>;
     shutdown(): Promise<void>;
 }

@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] - 2023-10-25
+
+- Implement persistence to DB for scores data
+
 ## [0.2.0] - 2023-10-24
 
 - Implemented Initial version of `leaderboard-service` returning a dummy response

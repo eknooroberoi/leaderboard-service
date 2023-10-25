@@ -5,6 +5,8 @@ import TopScorersDTO from "./DTO/topScorersDTO";
 import TopScoresDTO from "./DTO/topScoresDTO";
 import KafkaConsumerConfigDTO from "./DTO/kafkaConsumerConfigDTO";
 import ConfigDTO from "./DTO/configDTO";
+import MessageDTO from "./DTO/messageDTO";
+import MySQLConfigDTO from "./DTO/mySQLConfigDTO";
 
 export {
     UserDAO,
@@ -13,5 +15,7 @@ export {
     TopScorersDTO,
     TopScoresDTO,
     KafkaConsumerConfigDTO,
-    ConfigDTO
+    ConfigDTO,
+    MessageDTO,
+    MySQLConfigDTO
 }
