@@ -1,7 +1,7 @@
 import {Request, Response} from "express";
 import {ILeaderboardService} from "../../services";
 
-class getTopScoresControllerPublic {
+class GetTopScoresControllerPublic {
     leaderboardService: ILeaderboardService;
 
     constructor(leaderboardService: ILeaderboardService) {
@@ -21,4 +21,4 @@ class getTopScoresControllerPublic {
     }
 }
 
-export default getTopScoresControllerPublic;
+export default GetTopScoresControllerPublic;
