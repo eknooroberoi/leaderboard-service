@@ -1,4 +1,5 @@
 import express from "express";
+import "reflect-metadata"; // required for typeorm
 
 // @ts-ignore
 import bodyParser from "body-parser";

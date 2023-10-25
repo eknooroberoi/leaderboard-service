@@ -1,22 +1,17 @@
+import {Column, Entity, PrimaryColumn} from "typeorm";
+
+/*
+CREATE TABLE user (
+    id VARCHAR(50) NOT NULL,
+    name VARCHAR(255) DEFAULT 'gameUser',
+    PRIMARY KEY (id)
+);
+ */
+@Entity({name: "user"})
 export default class UserDAO{
-    public static readonly COLUMN_NAMES: object = {
-        id: 'id',
-        name: 'name',
-    }
+    @PrimaryColumn({type : "varchar", length : 50})
+    id: string = "";
 
-    private readonly _id: string;
-    private readonly _name: string;
-
-    constructor(userId: string, userName: string) {
-        this._id = userId;
-        this._name = userName;
-    }
-
-    get id(): string {
-        return this._id;
-    }
-
-    get name(): string {
-        return this._name;
-    }
+    @Column({type : "varchar", length : 255, default : "gameUser"})
+    name: string = "";
 }
