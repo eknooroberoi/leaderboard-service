@@ -29,7 +29,17 @@ class Leaderboard implements ILeaderboard{
         persistLeaderboard.userId = msg.userId;
         persistLeaderboard.score = msg.score;
         persistLeaderboard.updatedAt = msg.tsMs;
-        await dbManager.save(persistLeaderboard);
+        // Insert entry if does not exist; else update
+        await this.databaseImpl.getDBImpl()
+            .createQueryBuilder()
+            .insert()
+            .into(LeaderboardDAO)
+            .values(persistLeaderboard)
+            .orUpdate(
+                ["score", "updatedAt"],
+                ["gameId", "userId"],
+            )
+            .execute()
         console.log(persistLeaderboard);
     }
 

@@ -1,5 +1,5 @@
 import {asClass, asValue, AwilixContainer, createContainer, Lifetime, LifetimeType} from "awilix";
-import {GetTopScoresControllerPublic} from "../controllers";
+import {GetTopScoresControllerPublic, IController} from "../controllers";
 import {ILeaderboardService, LeaderboardService, ILeaderboard, LeaderboardImpl} from "../services";
 import {IQueueRepo} from "../repository";
 import {KafkaConsumer} from "../driver/kafka";
@@ -19,7 +19,7 @@ interface ICradle {
     leaderboardService: ILeaderboardService
 
     //Controller(s)
-    getTopScoresControllerPublic: GetTopScoresControllerPublic
+    getTopScoresControllerPublic: IController
 
     // Repositories
     queueImpl: IQueueRepo

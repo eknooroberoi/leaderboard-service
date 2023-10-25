@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+
+## [0.3.2] - 2023-10-26
+
+- Use Controller Interface
+- Update to support upsert operation for `leaderboard` table
+
 ## [0.3.1] - 2023-10-25
 
 - Updated .gitignore to ignore build files
