@@ -9,5 +9,8 @@
 .npmrc
 node_modules
 
+# Comiled Files
+/build/src
+
 # devEnv
 devEnv/.tmp
