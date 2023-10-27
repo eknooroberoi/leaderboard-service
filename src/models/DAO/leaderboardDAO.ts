@@ -1,6 +1,7 @@
 import {Column, Entity, Index, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
 import GameDAO from "./gameDAO";
 import UserDAO from "./userDAO";
+import Persistable from "./persistable";
 
 /*
 CREATE TABLE leaderboard (
@@ -19,7 +20,7 @@ CREATE TABLE leaderboard (
  */
 @Entity({name: "leaderboard"})
 @Index("idx_game_score_updated_at", {synchronize : false})
-export default class LeaderboardDAO {
+export default class LeaderboardDAO implements Persistable{
     @PrimaryColumn({type : "varchar", length : 50, name : 'game_id'})
     @ManyToOne(_ => GameDAO)
     @JoinColumn({name : 'game_id'})

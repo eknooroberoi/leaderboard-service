@@ -1,16 +1,19 @@
 import {asClass, asValue, AwilixContainer, createContainer, Lifetime, LifetimeType} from "awilix";
 import {GetTopScoresControllerPublic, IController} from "../controllers";
 import {ILeaderboardService, LeaderboardService, ILeaderboard, LeaderboardImpl} from "../services";
-import {IQueueRepo} from "../repository";
+import {DatabaseRepo, IDatabaseRepo, IQueueRepo} from "../repository";
 import {KafkaConsumer} from "../driver/kafka";
 import config from "../config/config";
 import {ConfigDTO, KafkaConsumerConfigDTO} from "../models";
 import MySQLDataSource from "../driver/mysql/mysql";
-import IDatabaseRepo from "../repository/interfaces/IDatabaseRepo";
+import {ISQLDataSource} from "../driver";
 interface ICradle {
     //Utility
     config: ConfigDTO
     kafkaConsumerConfig: KafkaConsumerConfigDTO
+
+    //Drivers
+    mySQLDriver: ISQLDataSource
 
     //Domain
     leaderboardImpl: ILeaderboard
@@ -33,6 +36,9 @@ container.register({
     config: asValue(config),
     kafkaConsumerConfig: asClass(KafkaConsumerConfigDTO, getScope()),
 
+    //Drivers
+    mySQLDriver: asClass(MySQLDataSource, getScope()),
+
     //Domain
     leaderboardImpl: asClass(LeaderboardImpl, getScope()),
 
@@ -44,7 +50,7 @@ container.register({
 
     // Repositories
     queueImpl: asClass(KafkaConsumer, getScope()),
-    databaseImpl: asClass(MySQLDataSource, getScope())
+    databaseImpl: asClass(DatabaseRepo, getScope())
 });
 
 function getScope(): {lifetime: LifetimeType} {

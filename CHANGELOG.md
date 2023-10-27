@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.1] - 2023-10-27
+
+- Move DB interactions inside `DatabaseRepo`
+- Initialise new `Persistable` interface to be used as base class for all data objects that need to persist to storage
+- Initialise generic `Serializable` interface
+
 ## [0.4.0] - 2023-10-27
 
 - Implement logic for fetching top scores from DB

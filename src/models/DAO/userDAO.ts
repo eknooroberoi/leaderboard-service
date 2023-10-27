@@ -1,4 +1,5 @@
 import {Column, Entity, PrimaryColumn} from "typeorm";
+import Persistable from "./persistable";
 
 /*
 CREATE TABLE user (
@@ -8,7 +9,7 @@ CREATE TABLE user (
 );
  */
 @Entity({name: "user"})
-export default class UserDAO{
+export default class UserDAO implements Persistable{
     @PrimaryColumn({type : "varchar", length : 50})
     id: string = "";
 
