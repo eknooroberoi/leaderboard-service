@@ -8,6 +8,7 @@ import ConfigDTO from "./DTO/configDTO";
 import MessageDTO from "./DTO/messageDTO";
 import MySQLConfigDTO from "./DTO/mySQLConfigDTO";
 import RequestQueryParamsDTO from "./DTO/requestQueryParamsDTO";
+import TopScorerDAO from "./DAO/topScorerDAO";
 
 export {
     UserDAO,
@@ -19,5 +20,6 @@ export {
     ConfigDTO,
     MessageDTO,
     MySQLConfigDTO,
-    RequestQueryParamsDTO
+    RequestQueryParamsDTO,
+    TopScorerDAO
 }

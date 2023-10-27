@@ -1,10 +1,10 @@
 import {DataSource} from "typeorm";
 import {ConfigDTO, GameDAO, LeaderboardDAO, UserDAO} from "../../models";
 import assert from "assert";
-import IDatabaseRepo from "../../repository/interfaces/IDatabaseRepo";
 import IndexGameScoreUpdatedAt from "./1698269779298-IndexCreation";
+import ISQLDataSource from "../interfaces/ISQLDataSource";
 
-export default class MySQLDataSource implements IDatabaseRepo{
+export default class MySQLDataSource implements ISQLDataSource{
     private readonly _ds: DataSource
 
     constructor(config: ConfigDTO) {

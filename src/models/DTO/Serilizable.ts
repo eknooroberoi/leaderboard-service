@@ -2,8 +2,11 @@ export interface ISerializable {
     toJSON(): any;
 }
 
+// Note :- We have defined a base Serializable class that needs to be implemented by every DTO
+//         that needs to be serialised to wire. This helps enforce standardisation and is also needed
+//         to get around limitations in Typescript around Accessors(Getters/Setters) which are not
+//         supported properly by default serialization in JS
 export class Serializable implements ISerializable{
-    // Note: This is required for proper serialization so that we do not expose internal field names
     toJSON(): any {
 
         //Shallow clone

@@ -1,4 +1,5 @@
 import { Entity, PrimaryColumn, Column } from "typeorm"
+import Persistable from "./persistable";
 
 /*
 CREATE TABLE game (
@@ -8,7 +9,7 @@ CREATE TABLE game (
 );
  */
 @Entity({name: "game"})
-export default class GameDAO{
+export default class GameDAO implements Persistable{
     @PrimaryColumn({type : "varchar", length : 50})
     id: string = "";
 
