@@ -1,4 +1,4 @@
-export default class TopScorersDTO{
+export default class TopScorerDTO {
     private readonly _userId: string;
     private readonly _userName: string;
     private readonly _score: number;

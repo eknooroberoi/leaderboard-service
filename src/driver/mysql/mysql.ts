@@ -1,7 +1,8 @@
 import {DataSource} from "typeorm";
-import {ConfigDTO, GameDAO, LeaderboardDAO, UserDAO} from "../models";
+import {ConfigDTO, GameDAO, LeaderboardDAO, UserDAO} from "../../models";
 import assert from "assert";
-import IDatabaseRepo from "../repository/interfaces/IDatabaseRepo";
+import IDatabaseRepo from "../../repository/interfaces/IDatabaseRepo";
+import IndexGameScoreUpdatedAt from "./1698269779298-IndexCreation";
 
 export default class MySQLDataSource implements IDatabaseRepo{
     private readonly _ds: DataSource
@@ -16,6 +17,8 @@ export default class MySQLDataSource implements IDatabaseRepo{
             password: config.mySQLConfig.password,
             database: config.mySQLConfig.database,
             entities: [GameDAO, UserDAO, LeaderboardDAO],
+            migrations: [IndexGameScoreUpdatedAt],
+            migrationsRun: true,
             synchronize: true,
         });
         ds.initialize()
@@ -26,5 +29,9 @@ export default class MySQLDataSource implements IDatabaseRepo{
 
     getDBImpl(): DataSource{
         return this._ds;
+    }
+
+    async shutdown(): Promise<void> {
+        await this._ds.destroy();
     }
 }

@@ -3,7 +3,7 @@ import {Column, Entity, PrimaryColumn} from "typeorm";
 /*
 CREATE TABLE user (
     id VARCHAR(50) NOT NULL,
-    name VARCHAR(255) DEFAULT 'gameUser',
+    name VARCHAR(255) NOT NULL DEFAULT 'gameUser',
     PRIMARY KEY (id)
 );
  */
