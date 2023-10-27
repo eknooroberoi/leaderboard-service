@@ -1,9 +1,10 @@
-import TopScorersDTO from "./topScorersDTO";
+import TopScorerDTO from "./topScorerDTO";
+import {Serializable} from "./Serilizable";
 
-export default class TopScoresDTO{
+export default class TopScoresDTO extends Serializable{
     private readonly _gameId: string;
     private readonly _gameName: string;
-    private readonly _topScorers: TopScorersDTO[];
+    private readonly _topScorers: TopScorerDTO[];
     private readonly _lastUpdatedAt: number;
 
     get gameId(): string {
@@ -14,7 +15,7 @@ export default class TopScoresDTO{
         return this._gameName;
     }
 
-    get topScorers(): TopScorersDTO[] {
+    get topScorers(): TopScorerDTO[] {
         return this._topScorers;
     }
 
@@ -22,7 +23,8 @@ export default class TopScoresDTO{
         return this._lastUpdatedAt;
     }
 
-    constructor(gameId: string, gameName: string, topScorers: TopScorersDTO[], lastUpdatedAt: number) {
+    constructor(gameId: string, gameName: string, topScorers: TopScorerDTO[], lastUpdatedAt: number) {
+        super();
         this._gameId = gameId;
         this._gameName = gameName;
         this._topScorers = topScorers;

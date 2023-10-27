@@ -7,19 +7,19 @@ USE leaderboard_service;
 -- Create Tables
 CREATE TABLE game (
     id VARCHAR(50) NOT NULL,
-    name VARCHAR(255) DEFAULT 'game',
+    name VARCHAR(255) NOT NULL DEFAULT 'game',
     PRIMARY KEY (id)
 );
 CREATE TABLE user (
     id VARCHAR(50) NOT NULL,
-    name VARCHAR(255) DEFAULT 'gameUser',
+    name VARCHAR(255) NOT NULL DEFAULT 'gameUser',
     PRIMARY KEY (id)
 );
 CREATE TABLE leaderboard (
     user_id VARCHAR(50) NOT NULL,
     game_id VARCHAR(50) NOT NULL,
-    score INT DEFAULT NULL,
-    updated_at BIGINT DEFAULT NULL,
+    score INT NOT NULL,
+    updated_at BIGINT NOT NULL,
     PRIMARY KEY (game_id, user_id),
 
     -- Add a composite secondary index for querying top n scores within a game

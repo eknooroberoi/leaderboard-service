@@ -5,7 +5,7 @@ import {IQueueRepo} from "../repository";
 import {KafkaConsumer} from "../driver/kafka";
 import config from "../config/config";
 import {ConfigDTO, KafkaConsumerConfigDTO} from "../models";
-import MySQLDataSource from "../driver/mysql";
+import MySQLDataSource from "../driver/mysql/mysql";
 import IDatabaseRepo from "../repository/interfaces/IDatabaseRepo";
 interface ICradle {
     //Utility
