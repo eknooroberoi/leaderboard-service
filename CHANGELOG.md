@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.1] - 2023-10-29
+
+- Add `jest` for testing + add dummy test
+- Generate test coverage report
+
 ## [0.5.0] - 2023-10-29
 
 - Implement caching with `Memcached`
