@@ -7,8 +7,7 @@ import {RequestQueryParamsDTO, TopScoresDTO} from "../../models";
 const ajv: Ajv = new Ajv()  // ajv is used for validating json object schema
 
 class GetTopScoresControllerPublic {
-    leaderboardService: ILeaderboardService;
-
+    static CONSISTENT_READ_HEADER: string = "CONSISTENT-READ";
     static requestQueryParamsSchema: JSONSchemaType<RequestQueryParamsDTO> = {
         type: "object",
         properties: {
@@ -19,6 +18,8 @@ class GetTopScoresControllerPublic {
         additionalProperties: false
     };
     static requestQueryParamsSchemaValidate: ValidateFunction<RequestQueryParamsDTO> = ajv.compile(GetTopScoresControllerPublic.requestQueryParamsSchema);
+
+    leaderboardService: ILeaderboardService;
 
     constructor(leaderboardService: ILeaderboardService) {
         this.leaderboardService = leaderboardService;
@@ -32,7 +33,8 @@ class GetTopScoresControllerPublic {
             }
             const gameId: string = req.query.gameId;
             const limit: number = parseInt(req.query.limit);
-            const topScores: TopScoresDTO | null = await this.leaderboardService.getTopScores(gameId, limit);
+            const consistentRead: boolean = req.get(GetTopScoresControllerPublic.CONSISTENT_READ_HEADER) === "true";
+            const topScores: TopScoresDTO | null = await this.leaderboardService.getTopScores(gameId, limit, consistentRead);
             if (topScores === null){ // Did not find entry, return 404
                 res.status(404).send({errMsg: `No entry found for game: ${gameId}`})
                 return

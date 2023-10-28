@@ -13,6 +13,10 @@ export interface IConsts {
         userName: string,
         password: string,
         database: string,
+    },
+    memcachedConfig: {
+        location: string,
+        defaultTTL: number,
     }
 }
 
@@ -36,5 +40,9 @@ export const consts: IConsts = {
         userName: "default_user",
         password: "default_pwd",
         database: "leaderboard_service"
+    },
+    memcachedConfig: {
+        location: "localhost:11211",
+        defaultTTL: 60, // Default TTL of 60s
     }
 }
