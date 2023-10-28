@@ -8,7 +8,7 @@ import Persistable from "../models/DAO/persistable";
 // TODO :- Have single instance of ajv in the application
 const ajv: Ajv = new Ajv()  // ajv is used for validating json object schema
 
-export class DatabaseRepo implements IDatabaseRepo{
+export default class DatabaseRepo implements IDatabaseRepo{
     private sqlDatabaseImpl: ISQLDataSource
 
     static topScorersSchema: JSONSchemaType<TopScorerDAO[]> = {
@@ -26,8 +26,8 @@ export class DatabaseRepo implements IDatabaseRepo{
     };
     static topScorersSchemaValidate: ValidateFunction<TopScorerDAO[]> = ajv.compile(DatabaseRepo.topScorersSchema);
 
-    constructor(mySQLDriver: ISQLDataSource) {
-        this.sqlDatabaseImpl = mySQLDriver;
+    constructor(sqlDriver: ISQLDataSource) {
+        this.sqlDatabaseImpl = sqlDriver;
     }
 
     async saveEntity(entity:Persistable): Promise<void>{

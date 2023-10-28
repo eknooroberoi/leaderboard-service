@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.4.1] - 2023-10-27
 
+- Move Queue interactions inside `QueueRepo`
+
+## [0.4.1] - 2023-10-27
+
 - Move DB interactions inside `DatabaseRepo`
 - Initialise new `Persistable` interface to be used as base class for all data objects that need to persist to storage
 - Initialise generic `Serializable` interface
