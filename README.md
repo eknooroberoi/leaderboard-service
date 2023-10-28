@@ -167,8 +167,11 @@ ORDER BY `leaderboard`.`score` DESC, `leaderboard`.`updated_at` ASC LIMIT :limit
 Swagger : http://localhost:3000/api-docs
 
 ### Testing
-Clone the repo and change directory to leaderboard-service
+Clone the repo and change directory to leaderboard-service.
+
 Run `npm test`
+
+To generate test coverage report run `npm test -- --coverage`
 
 ### PR Guidelines
 1. Create feature branch from main using template.
