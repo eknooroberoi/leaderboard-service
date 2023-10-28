@@ -11,8 +11,8 @@ class LeaderboardService implements ILeaderboardService{
         this.leaderboardImpl = leaderboardImpl;
     }
 
-    async getTopScores(gameId:string, limit:number): Promise<TopScoresDTO | null>{
-        return this.leaderboardImpl.getTopScores(gameId, limit);
+    async getTopScores(gameId:string, limit:number, consistentRead: boolean): Promise<TopScoresDTO | null>{
+        return this.leaderboardImpl.getTopScores(gameId, limit, consistentRead);
     }
 
     async shutdown(): Promise<void>{

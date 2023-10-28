@@ -7,11 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.4.1] - 2023-10-27
+## [0.5.0] - 2023-10-29
+
+- Implement caching with `Memcached`
+- Implement logic for `consistentReads`
+
+## [0.4.1] - 2023-10-28
 
 - Move Queue interactions inside `QueueRepo`
 
-## [0.4.1] - 2023-10-27
+## [0.4.1] - 2023-10-28
 
 - Move DB interactions inside `DatabaseRepo`
 - Initialise new `Persistable` interface to be used as base class for all data objects that need to persist to storage

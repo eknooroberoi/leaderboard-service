@@ -3,6 +3,12 @@
 ---
 version: '1'
 services:
+  memcached:
+    image: memcached:latest
+    container_name: memcached
+    ports:
+      - "11211:11211"
+
   mysql:
     image: mysql:8
     container_name: mysql

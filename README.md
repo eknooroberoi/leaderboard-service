@@ -44,7 +44,7 @@ As players complete games, the game service publishes their scores to a designat
 
 #### Request
 ```shell
-curl --location 'localhost:3000/leaderboard-service/v1/public/top-scores?gameId=<GAME_ID_HERE>8&limit=<LIMIT_HERE>' \
+curl --location 'localhost:3000/leaderboard-service/v1/public/top-scores?gameId=<GAME_ID_HERE>&limit=<LIMIT_HERE>' \
 --header 'CONSISTENT-READ: false'
 ```
 #### Response
