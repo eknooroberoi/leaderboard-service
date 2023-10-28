@@ -14,3 +14,6 @@ node_modules
 
 # devEnv
 devEnv/.tmp
+
+# Test Coverage
+coverage/
