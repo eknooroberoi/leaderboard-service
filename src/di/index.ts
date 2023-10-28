@@ -1,8 +1,8 @@
 import {asClass, asValue, AwilixContainer, createContainer, Lifetime, LifetimeType} from "awilix";
 import {GetTopScoresControllerPublic, IController} from "../controllers";
 import {ILeaderboardService, LeaderboardService, ILeaderboard, LeaderboardImpl} from "../services";
-import {DatabaseRepo, IDatabaseRepo, IQueueRepo} from "../repository";
-import {KafkaConsumer} from "../driver/kafka";
+import {DatabaseRepo, IDatabaseRepo, IQueueRepo, QueueRepo} from "../repository";
+import {IQueueConsumer, KafkaConsumer} from "../driver";
 import config from "../config/config";
 import {ConfigDTO, KafkaConsumerConfigDTO} from "../models";
 import MySQLDataSource from "../driver/mysql/mysql";
@@ -13,7 +13,8 @@ interface ICradle {
     kafkaConsumerConfig: KafkaConsumerConfigDTO
 
     //Drivers
-    mySQLDriver: ISQLDataSource
+    sqlDriver: ISQLDataSource
+    queueConsumerDriver: IQueueConsumer
 
     //Domain
     leaderboardImpl: ILeaderboard
@@ -37,7 +38,9 @@ container.register({
     kafkaConsumerConfig: asClass(KafkaConsumerConfigDTO, getScope()),
 
     //Drivers
-    mySQLDriver: asClass(MySQLDataSource, getScope()),
+    sqlDriver: asClass(MySQLDataSource, getScope()),
+    queueConsumerDriver: asClass(KafkaConsumer, getScope()),
+
 
     //Domain
     leaderboardImpl: asClass(LeaderboardImpl, getScope()),
@@ -49,7 +52,7 @@ container.register({
     getTopScoresControllerPublic: asClass(GetTopScoresControllerPublic, getScope()),
 
     // Repositories
-    queueImpl: asClass(KafkaConsumer, getScope()),
+    queueImpl: asClass(QueueRepo, getScope()),
     databaseImpl: asClass(DatabaseRepo, getScope())
 });
 
