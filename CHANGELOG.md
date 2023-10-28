@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.2] - 2023-10-29
+
+- Setup github action to run tests + generate coverage report on PRs
+
 ## [0.5.1] - 2023-10-29
 
 - Add `jest` for testing + add dummy test
@@ -17,7 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Implement caching with `Memcached`
 - Implement logic for `consistentReads`
 
-## [0.4.1] - 2023-10-28
+## [0.4.2] - 2023-10-28
 
 - Move Queue interactions inside `QueueRepo`
 
