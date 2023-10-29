@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.3] - 2023-10-29
+
+- Update images of approaches + add flow diagram
+
 ## [0.5.2] - 2023-10-29
 
 - Setup github action to run tests + generate coverage report on PRs

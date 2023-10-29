@@ -13,6 +13,7 @@ As players complete games, the game service publishes their scores to a designat
   - [Redis Sorted Set](#alternate-approach-1-redis-sorted-set)
   - [DB Read Replica](#alternate-approach-2-db-read-replica)
   - [Pod Local Cache](#alternate-approach-3-pod-local-cache)
+- [Flow Diagrams](#flow-diagrams)
 - [API Contracts](#api-contracts)
 - [DB Schema](#db-schema)
 - [Local Development](#local-development)
@@ -37,6 +38,16 @@ As players complete games, the game service publishes their scores to a designat
 ### Alternate Approach 3 (Pod Local Cache)
 
 ![Alternate-Approach-Pod-Local-Cache](./assets/image/alternate_approach_pod_local_cache.png)
+
+## Flow Diagrams
+
+### Consume events from Kafka
+
+![Consume-events-from-kafka](./assets/image/consume-from-kafka.png)
+
+### Retrieve Top n Scorers
+
+![Retrieve-Top-n-Scorers](./assets/image/retrieve-top-n-scorers.png)
 
 ## API Contracts
 
