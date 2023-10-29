@@ -1,4 +1,4 @@
-import * as http from "http";
+import http from "http";
 import closeWithGrace from "close-with-grace";
 
 import app from "./app";
