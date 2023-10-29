@@ -2,17 +2,18 @@ import {Request, Response} from "express";
 import {ILeaderboardService} from "../../services";
 import Ajv, {JSONSchemaType, ValidateFunction} from "ajv";
 import {RequestQueryParamsDTO, TopScoresDTO} from "../../models";
+import {IController} from "../interfaces/IController";
 
 // TODO :- Have single instance of ajv in the application
 const ajv: Ajv = new Ajv()  // ajv is used for validating json object schema
 
-class GetTopScoresControllerPublic {
+class GetTopScoresControllerPublic implements IController{
     static CONSISTENT_READ_HEADER: string = "CONSISTENT-READ";
     static requestQueryParamsSchema: JSONSchemaType<RequestQueryParamsDTO> = {
         type: "object",
         properties: {
-            gameId: {type: "string"},
-            limit: {type: "string"}
+            gameId: { type: "string", minLength: 1 },
+            limit: { type: "string", minLength: 1 },
         },
         required: ['gameId', 'limit'],
         additionalProperties: false
