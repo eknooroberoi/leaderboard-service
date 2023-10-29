@@ -9,11 +9,11 @@ As players complete games, the game service publishes their scores to a designat
 ### Table of contents:
 
 - [Detailed Approach](#detailed-approach)
+  - [Flow Diagrams](#flow-diagrams)
 - [Alternate Approaches](#alternate-approaches)
   - [Redis Sorted Set](#alternate-approach-1-redis-sorted-set)
   - [DB Read Replica](#alternate-approach-2-db-read-replica)
   - [Pod Local Cache](#alternate-approach-3-pod-local-cache)
-- [Flow Diagrams](#flow-diagrams)
 - [API Contracts](#api-contracts)
 - [DB Schema](#db-schema)
 - [Local Development](#local-development)
@@ -24,6 +24,16 @@ As players complete games, the game service publishes their scores to a designat
 ## Detailed Approach
 
 ![Primary-High-level-design]( ./assets/image/primary_approach_memcache.png)
+
+### Flow Diagrams
+
+#### Consume events from Kafka
+
+![Consume-events-from-kafka](./assets/image/consume-from-kafka.png)
+
+#### Retrieve Top n Scorers
+
+![Retrieve-Top-n-Scorers](./assets/image/retrieve-top-n-scorers.png)
 
 ## Alternate Approaches
 
@@ -38,16 +48,6 @@ As players complete games, the game service publishes their scores to a designat
 ### Alternate Approach 3 (Pod Local Cache)
 
 ![Alternate-Approach-Pod-Local-Cache](./assets/image/alternate_approach_pod_local_cache.png)
-
-## Flow Diagrams
-
-### Consume events from Kafka
-
-![Consume-events-from-kafka](./assets/image/consume-from-kafka.png)
-
-### Retrieve Top n Scorers
-
-![Retrieve-Top-n-Scorers](./assets/image/retrieve-top-n-scorers.png)
 
 ## API Contracts
 
