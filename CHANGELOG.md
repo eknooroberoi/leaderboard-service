@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.5.4] - 2023-10-29
 
+- Better request validation for get top scores api
+
+## [0.5.4] - 2023-10-29
+
 - Swagger Setup
 
 ## [0.5.3] - 2023-10-29
