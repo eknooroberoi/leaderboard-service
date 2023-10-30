@@ -1,5 +1,6 @@
 import {consts} from "./consts";
 import {ConfigDTO, KafkaConsumerConfigDTO, MemcachedConfigDTO, MySQLConfigDTO} from "../models";
+import LoggerConfigDTO from "../models/DTO/loggerConfigDTO";
 
 const kafkaConsumerConfig: KafkaConsumerConfigDTO = new KafkaConsumerConfigDTO(
     consts.kafkaConsumerConfig.brokers,
@@ -20,10 +21,14 @@ const memCachedConfig: MemcachedConfigDTO = new MemcachedConfigDTO(
     consts.memcachedConfig.location,
     consts.memcachedConfig.defaultTTL
 )
+const loggerConfig:LoggerConfigDTO = new LoggerConfigDTO(
+    consts.loggerConfig.logLevel
+)
 
 const config: ConfigDTO = new ConfigDTO();
 config.kafkaConsumerConfig = kafkaConsumerConfig;
 config.mySQLConfig = mySQLConfig;
 config.memcachedConfig = memCachedConfig;
+config.loggerConfig = loggerConfig;
 
 export default config;
