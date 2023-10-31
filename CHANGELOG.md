@@ -9,8 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.6.4] - 2023-10-31
 
-- Add `npm login` to solve auth errors for `npm ci` in Github Actions
-- Add `.npmrc` to force use public npm repository
+- Setup `registry-url` in github-actions
 - Separate linting and test_coverage actions
 - Rename typo in `.github/workflows` folder
 
