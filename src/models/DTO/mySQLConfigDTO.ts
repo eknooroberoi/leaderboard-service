@@ -1,11 +1,17 @@
-export default class MySQLConfigDTO{
+export default class MySQLConfigDTO {
     private readonly _host: string;
     private readonly _port: number;
     private readonly _userName: string;
     private readonly _password: string;
     private readonly _database: string;
 
-    constructor(host: string, port: number, userName: string, password: string, database: string) {
+    constructor(
+        host: string,
+        port: number,
+        userName: string,
+        password: string,
+        database: string
+    ) {
         this._host = host;
         this._port = port;
         this._userName = userName;

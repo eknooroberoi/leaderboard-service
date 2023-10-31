@@ -1,5 +1,5 @@
-export default class KafkaConsumerConfigDTO{
-    private _clientId: string = "DEFAULT_CLIENT_ID";
+export default class KafkaConsumerConfigDTO {
+    private _clientId: string = 'DEFAULT_CLIENT_ID';
     private _brokers: string[];
     private _groupId: string;
     private _topics: string[];
@@ -12,17 +12,17 @@ export default class KafkaConsumerConfigDTO{
         this._topics = topics;
     }
 
-    withClientId(clientId: string): KafkaConsumerConfigDTO{
+    withClientId(clientId: string): KafkaConsumerConfigDTO {
         this._clientId = clientId;
         return this;
     }
 
-    withFromBeginning(fromBeginning: boolean): KafkaConsumerConfigDTO{
+    withFromBeginning(fromBeginning: boolean): KafkaConsumerConfigDTO {
         this._fromBeginning = fromBeginning;
         return this;
     }
 
-    withBatchAutoResolve(batchAutoResolve: boolean): KafkaConsumerConfigDTO{
+    withBatchAutoResolve(batchAutoResolve: boolean): KafkaConsumerConfigDTO {
         this._batchAutoResolve = batchAutoResolve;
         return this;
     }

@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.0] - 2023-10-31
+
+- Added test cases and increased coverage to 91%
+- Added prettier library
+- Refactor code to enable proper mocking for testing
+
 ## [0.5.4] - 2023-10-29
 
 - Better request validation for get top scores api
