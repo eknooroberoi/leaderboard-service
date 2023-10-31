@@ -5,6 +5,7 @@ import Ajv, { JSONSchemaType, ValidateFunction } from 'ajv';
 import { DatabaseRepo } from './index';
 import { wrapInPromise } from '../utils/helpers';
 import { TopScoresDTO } from '../models';
+import logger from '../utils/logger';
 
 // TODO :- Have single instance of ajv in the application
 const ajv: Ajv = new Ajv(); // ajv is used for validating json object schema
@@ -46,7 +47,7 @@ export default class CacheRepo implements ICacheRepo {
                     );
                 }
             } catch (error) {
-                console.error(
+                logger.error(
                     `Error validating value returned from memcached. Err: ${error}`
                 );
             }

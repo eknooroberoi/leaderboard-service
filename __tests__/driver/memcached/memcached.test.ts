@@ -2,6 +2,7 @@ import Memcached from '../../../src/driver/memcached/memcached';
 import memcached from 'memcached';
 import { ConfigDTO, MemcachedConfigDTO } from '../../../src/models';
 import assert from 'assert';
+import logger from '../../../src/utils/logger';
 
 jest.mock('memcached');
 
@@ -11,9 +12,9 @@ describe('Memcached', () => {
         60
     );
     const mockedConfig: ConfigDTO = new ConfigDTO();
-    const consoleLogSpy = jest
-        .spyOn(console, 'log')
-        .mockImplementation(() => {});
+    const loggerDebugSpy = jest.spyOn(logger, 'debug').mockImplementation(() => {});
+    const loggerErrorSpy = jest.spyOn(logger, 'error').mockImplementation(() => {});
+
     mockedConfig.memcachedConfig = mockedMemcachedConfig;
 
     const commandData: memcached.CommandData = {
@@ -120,7 +121,7 @@ describe('Memcached', () => {
                 mockedConfig.memcachedConfig.defaultTTL,
                 expect.any(Function)
             );
-            expect(consoleLogSpy).toHaveBeenCalledWith(
+            expect(loggerErrorSpy).toHaveBeenCalledWith(
                 `Error setting value in Memcache: ${error} for key: ${key}`
             );
         });
@@ -141,7 +142,7 @@ describe('Memcached', () => {
                 mockedConfig.memcachedConfig.defaultTTL,
                 expect.any(Function)
             );
-            expect(consoleLogSpy).toHaveBeenCalledWith(
+            expect(loggerDebugSpy).toHaveBeenCalledWith(
                 `Value has been set in Memcache for key: ${key}`
             );
         });

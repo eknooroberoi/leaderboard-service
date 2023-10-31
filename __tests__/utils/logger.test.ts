@@ -1,4 +1,4 @@
-import Logger from '../src/driver/logger/logger';
+import Logger from '../../src/utils/logger';
 
 describe('Logger', () => {
     it('should log an info message', () => {

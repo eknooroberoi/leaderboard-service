@@ -2,6 +2,7 @@ import { ConfigDTO, KafkaConsumerConfigDTO } from '../../models';
 import assert from 'assert';
 import IQueueConsumer from '../interfaces/IQueueConsumer';
 import { Consumer, EachBatchPayload, Kafka } from 'kafkajs';
+import logger from '../../utils/logger';
 
 export default class KafkaConsumer implements IQueueConsumer {
     static newKafkaConsumerClient(config: ConfigDTO): Consumer {
@@ -32,10 +33,7 @@ export default class KafkaConsumer implements IQueueConsumer {
                 fromBeginning: kafkaConsumerConfig.fromBeginning,
             })
             .then(() =>
-                console.log(
-                    'Successfully subscribed to topics: %s',
-                    kafkaConsumerConfig.topics
-                )
+                logger.info(`Successfully subscribed to topics: ${kafkaConsumerConfig.topics}`)
             );
     }
 
@@ -53,7 +51,7 @@ export default class KafkaConsumer implements IQueueConsumer {
         try {
             await this._kafkaConsumerClient.run({
                 eachBatchAutoResolve:
-                    this._kafkaConsumerClientConfig.batchAutoResolve,
+                this._kafkaConsumerClientConfig.batchAutoResolve,
                 eachBatch: async (eachBatchPayload: EachBatchPayload) => {
                     for (const msg of eachBatchPayload.batch.messages) {
                         // At-least Once Consumer Ref :- https://kafka.js.org/docs/consuming#example
@@ -70,8 +68,8 @@ export default class KafkaConsumer implements IQueueConsumer {
                     }
                 },
             });
-        } catch (error) {
-            console.log('Error while consuming from Kafka: ', error);
+        } catch (error: any) {
+            logger.error(`Error while consuming from Kafka: ${error.message}`);
         }
     }
 

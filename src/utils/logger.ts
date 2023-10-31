@@ -1,7 +1,7 @@
 import winston, { format, transports } from 'winston';
-import { LogLevel } from '../../config/consts';
+import { LogLevel } from '../config/consts';
 import { Dictionary } from 'ts-essentials';
-import config from '../../config/config';
+import config from '../config/config';
 import assert from 'assert';
 
 const logLevelMap = {
