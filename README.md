@@ -188,13 +188,14 @@ Coverage report is generated in `coverage` folder.
 ### PR Guidelines
 1. Create feature branch from main and write all code in feature branch
 2. Run `npm prettier` to format code
-3. Run `npm test` to run tests and check coverage. There should be no failing tests and coverage should be above 90%
-3. Create PR for main using template
-4. In case of conflicts do <b> not </b> resolve on GitHub, but do following <br>
+3. Run `npm run lint` to check for linting errors
+4. Run `npm test` to run tests and check coverage. There should be no failing tests and coverage should be above 90%
+5. Create PR for main using template
+6. In case of conflicts do <b> not </b> resolve on GitHub, but do following <br>
    a. `git branch -D main` <br>
    b. `git pull origin main` <br>
    c. `git checkout main` <br>
    d. `git merge feature_branch_name` <br>
    e. resolve conflicts <br>
    f. `git push origin main` <br>
-5. Merge branch into main.
+7. Merge branch into main.

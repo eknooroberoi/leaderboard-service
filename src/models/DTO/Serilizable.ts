@@ -9,7 +9,7 @@ export interface ISerializable {
 export class Serializable implements ISerializable {
     toJSON(): any {
         //Shallow clone
-        let clone: any = Object.assign({}, this);
+        const clone: any = Object.assign({}, this);
 
         //Find the getter method descriptors
         //Get methods are on the prototype, not the instance

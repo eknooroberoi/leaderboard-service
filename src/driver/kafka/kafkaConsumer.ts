@@ -55,7 +55,7 @@ export default class KafkaConsumer implements IQueueConsumer {
                 eachBatchAutoResolve:
                     this._kafkaConsumerClientConfig.batchAutoResolve,
                 eachBatch: async (eachBatchPayload: EachBatchPayload) => {
-                    for (let msg of eachBatchPayload.batch.messages) {
+                    for (const msg of eachBatchPayload.batch.messages) {
                         // At-least Once Consumer Ref :- https://kafka.js.org/docs/consuming#example
                         if (
                             !eachBatchPayload.isRunning() ||
