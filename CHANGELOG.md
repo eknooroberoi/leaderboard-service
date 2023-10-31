@@ -7,6 +7,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.4] - 2023-10-31
+
+- Remove Github Action for linting, testing and coverage report generation on PRs
+
+## [0.6.3] - 2023-10-31
+
+- Add Github Action for linting, testing and coverage report generation on PRs
+
+## [0.6.2] - 2023-10-31
+
+- Add linter + fix lint warnings
+
+## [0.6.1] - 2023-10-31
+
+- Update README to include instructions for local devEnv setup and testing
+
+## [0.6.0] - 2023-10-31
+
+- Added test cases and increased coverage to 91%
+- Added prettier library
+- Refactor code to enable proper mocking for testing
+
 ## [0.5.4] - 2023-10-29
 
 - Better request validation for get top scores api

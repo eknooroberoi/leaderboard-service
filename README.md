@@ -168,30 +168,34 @@ ORDER BY `leaderboard`.`score` DESC, `leaderboard`.`updated_at` ASC LIMIT :limit
 ## Local Development
 
 1. Clone the repo and change directory to leaderboard-service
-2. Run `nvm use`
-3. Run `npm ci` in terminal
-4. Run `npx tsc` in terminal
-5. javascript file is `build/src/index.js`
-6. Run `node build/src/index.js`
-7. This will start the Node.js server at `localhost:3000`
+2. Run `nvm use` in terminal to use node version specified in `.nvmrc`
+3. Run `npm ci` in terminal to install dependencies
+4. Run `npx tsc` in terminal to compile typescript to javascript. This will create a `build` folder in root directory.
+5. Start Kafka, MySQL and Memcached from docker, by running `docker-compose up -d` inside `devEnv` folder
+6. javascript file is `build/src/index.js`
+7. Run `node build/src/index.js` in terminal to start the server
+8. This will start the Node.js server at `localhost:3000`
 
 Swagger : http://localhost:3000/api-docs
 
 ### Testing
 Clone the repo and change directory to leaderboard-service.
 
-Run `npm test`
+Run `npm test` to run tests and check coverage. There should be no failing tests and coverage should be above 90%.
 
-To generate test coverage report run `npm test -- --coverage`
+Coverage report is generated in `coverage` folder.
 
 ### PR Guidelines
-1. Create feature branch from main using template.
-2. Create PR for main
-3. In case of conflicts do <b> not </b> resolve on GitHub, but do following <br>
+1. Create feature branch from main and write all code in feature branch
+2. Run `npm prettier` to format code
+3. Run `npm run lint` to check for linting errors
+4. Run `npm test` to run tests and check coverage. There should be no failing tests and coverage should be above 90%
+5. Create PR for main using template
+6. In case of conflicts do <b> not </b> resolve on GitHub, but do following <br>
    a. `git branch -D main` <br>
    b. `git pull origin main` <br>
    c. `git checkout main` <br>
    d. `git merge feature_branch_name` <br>
    e. resolve conflicts <br>
    f. `git push origin main` <br>
-4. Merge branch into main.
+7. Merge branch into main.

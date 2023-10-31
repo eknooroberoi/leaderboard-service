@@ -1,6 +1,6 @@
-import {LogLevel} from "../../config/consts";
+import { LogLevel } from '../../config/consts';
 
-export default class LoggerConfigDTO{
+export default class LoggerConfigDTO {
     private readonly _logLevel: LogLevel;
 
     constructor(logLevel: LogLevel) {

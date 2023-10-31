@@ -1,6 +1,6 @@
-import {DataSource} from "typeorm";
+import IDatasource from './IDatasource';
 
-export default interface ISQLDataSource{
-    getDBImpl(): DataSource;
+export default interface ISQLDataSource {
+    getDBImpl(): IDatasource;
     shutdown(): Promise<void>;
 }

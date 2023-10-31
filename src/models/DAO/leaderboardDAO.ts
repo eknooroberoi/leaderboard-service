@@ -1,7 +1,14 @@
-import {Column, Entity, Index, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
-import GameDAO from "./gameDAO";
-import UserDAO from "./userDAO";
-import Persistable from "./persistable";
+import {
+    Column,
+    Entity,
+    Index,
+    JoinColumn,
+    ManyToOne,
+    PrimaryColumn,
+} from 'typeorm';
+import GameDAO from './gameDAO';
+import UserDAO from './userDAO';
+import Persistable from './persistable';
 
 /*
 CREATE TABLE leaderboard (
@@ -18,24 +25,23 @@ CREATE TABLE leaderboard (
     FOREIGN KEY (game_id) REFERENCES game(id)
 );
  */
-@Entity({name: "leaderboard"})
-@Index("idx_game_score_updated_at", {synchronize : false})
-export default class LeaderboardDAO implements Persistable{
-    @PrimaryColumn({type : "varchar", length : 50, name : 'game_id'})
-    @ManyToOne(_ => GameDAO)
-    @JoinColumn({name : 'game_id'})
-    gameId: string = "";
+@Entity({ name: 'leaderboard' })
+@Index('idx_game_score_updated_at', { synchronize: false })
+export default class LeaderboardDAO implements Persistable {
+    @PrimaryColumn({ type: 'varchar', length: 50, name: 'game_id' })
+    @ManyToOne((_) => GameDAO)
+    @JoinColumn({ name: 'game_id' })
+    gameId: string = '';
 
-    @PrimaryColumn({type : "varchar", length : 50, name : 'user_id'})
-    @ManyToOne(_ => UserDAO)
-    @JoinColumn({name : 'user_id'})
-    userId: string = "";
+    @PrimaryColumn({ type: 'varchar', length: 50, name: 'user_id' })
+    @ManyToOne((_) => UserDAO)
+    @JoinColumn({ name: 'user_id' })
+    userId: string = '';
 
-    @Column({type : "int"})
+    @Column({ type: 'int' })
     score: number = 0;
 
     // Note :- bigint column type, doesn't fit into the regular `number` type and maps property to a `string` instead
-    @Column({type : "bigint", name : "updated_at"})
-    updatedAt: string = "0";
-
+    @Column({ type: 'bigint', name: 'updated_at' })
+    updatedAt: string = '0';
 }

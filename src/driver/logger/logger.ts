@@ -1,8 +1,8 @@
 import winston, { format, transports } from 'winston';
 import { LogLevel } from '../../config/consts';
 import { Dictionary } from 'ts-essentials';
-import config from "../../config/config";
-import assert from "assert";
+import config from '../../config/config';
+import assert from 'assert';
 
 const logLevelMap = {
     [LogLevel.DEFAULT]: 'info', // Default log level is info
@@ -32,8 +32,12 @@ class Logger {
         });
     }
 
-    private logEntry(severity: LogLevel, message: string, payload: Dictionary<any> = {}) {
-        assert(config.loggerConfig !== undefined)
+    private logEntry(
+        severity: LogLevel,
+        message: string,
+        payload: Dictionary<any> = {}
+    ) {
+        assert(config.loggerConfig !== undefined);
         if (severity < config.loggerConfig.logLevel) {
             return;
         }

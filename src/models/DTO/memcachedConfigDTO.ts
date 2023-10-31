@@ -1,4 +1,4 @@
-export default class MemcachedConfigDTO{
+export default class MemcachedConfigDTO {
     private readonly _location: string;
     private readonly _defaultTTL: number;
 

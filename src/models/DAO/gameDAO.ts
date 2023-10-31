@@ -1,5 +1,5 @@
-import { Entity, PrimaryColumn, Column } from "typeorm"
-import Persistable from "./persistable";
+import { Entity, PrimaryColumn, Column } from 'typeorm';
+import Persistable from './persistable';
 
 /*
 CREATE TABLE game (
@@ -8,11 +8,11 @@ CREATE TABLE game (
     PRIMARY KEY (id)
 );
  */
-@Entity({name: "game"})
-export default class GameDAO implements Persistable{
-    @PrimaryColumn({type : "varchar", length : 50})
-    id: string = "";
+@Entity({ name: 'game' })
+export default class GameDAO implements Persistable {
+    @PrimaryColumn({ type: 'varchar', length: 50 })
+    id: string = '';
 
-    @Column({type : "varchar", length : 255, default : "game"})
-    name: string = "";
+    @Column({ type: 'varchar', length: 255, default: 'game' })
+    name: string = '';
 }
