@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.6.4] - 2023-10-31
 
+- Separate linting and test_coverage actions
 - Rename typo in `.github/workflows` folder
 
 ## [0.6.3] - 2023-10-31
