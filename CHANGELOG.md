@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.4] - 2023-10-31
+
+- Rename typo in `.github/workflows` folder
+
 ## [0.6.3] - 2023-10-31
 
 - Add Github Action for linting, testing and coverage report generation on PRs
