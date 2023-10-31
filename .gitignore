@@ -10,7 +10,7 @@
 node_modules
 
 # Comiled Files
-/build/src
+/build
 
 # devEnv
 devEnv/.tmp

@@ -1,39 +1,62 @@
-import {asClass, asValue, AwilixContainer, createContainer, Lifetime, LifetimeType} from "awilix";
-import {GetTopScoresControllerPublic, IController} from "../controllers";
-import {ILeaderboardService, LeaderboardService, ILeaderboard, LeaderboardImpl} from "../services";
-import {DatabaseRepo, IDatabaseRepo, IQueueRepo, QueueRepo} from "../repository";
-import {ICache, IQueueConsumer, KafkaConsumer, Memcached} from "../driver";
-import config from "../config/config";
-import {ConfigDTO} from "../models";
-import MySQLDataSource from "../driver/mysql/mysql";
-import {ISQLDataSource} from "../driver";
-import ICacheRepo from "../repository/interfaces/ICacheRepo";
-import CacheRepo from "../repository/cacheRepo";
+import {
+    asClass,
+    asValue,
+    AwilixContainer,
+    createContainer,
+    Lifetime,
+    LifetimeType,
+} from 'awilix';
+import { GetTopScoresControllerPublic, IController } from '../controllers';
+import {
+    ILeaderboardService,
+    LeaderboardService,
+    ILeaderboard,
+    LeaderboardImpl,
+} from '../services';
+import {
+    DatabaseRepo,
+    IDatabaseRepo,
+    IQueueRepo,
+    QueueRepo,
+} from '../repository';
+import { ICache, IQueueConsumer, KafkaConsumer, Memcached } from '../driver';
+import config from '../config/config';
+import { ConfigDTO } from '../models';
+import MySQLDataSource from '../driver/mysql/mysql';
+import { ISQLDataSource } from '../driver';
+import ICacheRepo from '../repository/interfaces/ICacheRepo';
+import CacheRepo from '../repository/cacheRepo';
+import MemcachedClient from 'memcached';
+import { Consumer } from 'kafkajs';
 interface ICradle {
     //Utility
-    config: ConfigDTO
+    config: ConfigDTO;
 
     //Drivers
-    sqlDriver: ISQLDataSource
-    queueConsumerDriver: IQueueConsumer
-    cacheDriver: ICache
+    sqlDriver: ISQLDataSource;
+    queueConsumerDriver: IQueueConsumer;
+    cacheDriver: ICache;
+    memcachedClient: MemcachedClient;
+    kafkaConsumerClient: Consumer;
 
     //Domain
-    leaderboardImpl: ILeaderboard
+    leaderboardImpl: ILeaderboard;
 
     //Service(s)
-    leaderboardService: ILeaderboardService
+    leaderboardService: ILeaderboardService;
 
     //Controller(s)
-    getTopScoresControllerPublic: IController
+    getTopScoresControllerPublic: IController;
 
     // Repositories
-    queueImpl: IQueueRepo
-    databaseImpl: IDatabaseRepo
-    cacheImpl: ICacheRepo
+    queueImpl: IQueueRepo;
+    databaseImpl: IDatabaseRepo;
+    cacheImpl: ICacheRepo;
 }
 
-const container: AwilixContainer<ICradle> = createContainer<ICradle>({injectionMode: "CLASSIC"});
+const container: AwilixContainer<ICradle> = createContainer<ICradle>({
+    injectionMode: 'CLASSIC',
+});
 
 container.register({
     //Utility
@@ -43,7 +66,8 @@ container.register({
     sqlDriver: asClass(MySQLDataSource, getScope()),
     queueConsumerDriver: asClass(KafkaConsumer, getScope()),
     cacheDriver: asClass(Memcached, getScope()),
-
+    memcachedClient: asValue(Memcached.newMemcachedClient(config)),
+    kafkaConsumerClient: asValue(KafkaConsumer.newKafkaConsumerClient(config)),
 
     //Domain
     leaderboardImpl: asClass(LeaderboardImpl, getScope()),
@@ -52,20 +76,22 @@ container.register({
     leaderboardService: asClass(LeaderboardService, getScope()),
 
     //Controller(s)
-    getTopScoresControllerPublic: asClass(GetTopScoresControllerPublic, getScope()),
+    getTopScoresControllerPublic: asClass(
+        GetTopScoresControllerPublic,
+        getScope()
+    ),
 
     // Repositories
     queueImpl: asClass(QueueRepo, getScope()),
     databaseImpl: asClass(DatabaseRepo, getScope()),
-    cacheImpl: asClass(CacheRepo, getScope())
+    cacheImpl: asClass(CacheRepo, getScope()),
 });
 
-function getScope(): {lifetime: LifetimeType} {
-    return {lifetime: Lifetime.SINGLETON};
+function getScope(): { lifetime: LifetimeType } {
+    return { lifetime: Lifetime.SINGLETON };
 }
 
 //Forcefully Start Leaderboard Impl to start consuming from Kafka
 container.build(LeaderboardImpl);
 
-export {container};
-
+export { container };

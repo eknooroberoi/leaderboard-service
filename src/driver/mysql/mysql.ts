@@ -1,16 +1,17 @@
-import {DataSource} from "typeorm";
-import {ConfigDTO, GameDAO, LeaderboardDAO, UserDAO} from "../../models";
-import assert from "assert";
-import IndexGameScoreUpdatedAt from "./1698269779298-IndexCreation";
-import ISQLDataSource from "../interfaces/ISQLDataSource";
+import { DataSource } from 'typeorm';
+import { ConfigDTO, GameDAO, LeaderboardDAO, UserDAO } from '../../models';
+import assert from 'assert';
+import IndexGameScoreUpdatedAt from './1698269779298-IndexCreation';
+import ISQLDataSource from '../interfaces/ISQLDataSource';
+import IDatasource from '../interfaces/IDatasource';
 
-export default class MySQLDataSource implements ISQLDataSource{
-    private readonly _ds: DataSource
+export default class MySQLDataSource implements ISQLDataSource {
+    private readonly _ds: IDatasource;
 
     constructor(config: ConfigDTO) {
         assert(config.mySQLConfig !== undefined);
         const ds: DataSource = new DataSource({
-            type: "mysql",
+            type: 'mysql',
             host: config.mySQLConfig.host,
             port: config.mySQLConfig.port,
             username: config.mySQLConfig.userName,
@@ -22,12 +23,14 @@ export default class MySQLDataSource implements ISQLDataSource{
             synchronize: true,
         });
         ds.initialize()
-            .then(() => console.log("Data Source has been initialized!"))
-            .catch((err) => console.error("Error during Data Source initialization", err));
+            .then(() => console.log('Data Source has been initialized!'))
+            .catch((err) =>
+                console.error('Error during Data Source initialization', err)
+            );
         this._ds = ds;
     }
 
-    getDBImpl(): DataSource{
+    getDBImpl(): IDatasource {
         return this._ds;
     }
 

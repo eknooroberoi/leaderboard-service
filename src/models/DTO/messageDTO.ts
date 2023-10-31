@@ -1,4 +1,6 @@
-export default class MessageDTO{
+import { Serializable } from './Serilizable';
+
+export default class MessageDTO extends Serializable {
     private readonly _gameId: string;
     private readonly _gameName: string;
     private readonly _userId: string;
@@ -6,7 +8,15 @@ export default class MessageDTO{
     private readonly _score: number;
     private readonly _tsMs: string;
 
-    constructor(gameId: string, gameName: string, userId: string, userName: string, score: number, tsMs: string | undefined) {
+    constructor(
+        gameId: string,
+        gameName: string,
+        userId: string,
+        userName: string,
+        score: number,
+        tsMs: string | undefined
+    ) {
+        super();
         this._gameId = gameId;
         this._gameName = gameName;
         this._userId = userId;
@@ -14,10 +24,10 @@ export default class MessageDTO{
         this._score = score;
         if (tsMs !== undefined) {
             this._tsMs = tsMs;
-        } else { // set to currentTime if not defined
+        } else {
+            // set to currentTime if not defined
             this._tsMs = Date.now().toString();
         }
-
     }
 
     get gameId(): string {

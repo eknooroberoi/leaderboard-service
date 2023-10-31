@@ -1,15 +1,15 @@
-import express from "express";
-import "reflect-metadata"; // required for typeorm
+import express from 'express';
+import 'reflect-metadata'; // required for typeorm
 
 // @ts-ignore
-import bodyParser from "body-parser";
-import helmet from "helmet";
-import {router} from "./router";
+import bodyParser from 'body-parser';
+import helmet from 'helmet';
+import { router } from './router';
 
 const app: express.Application = express();
 app.use(bodyParser.json());
 
-if(process.env.ACTIVE_ENV === "PRODUCTION"){
+if (process.env.ACTIVE_ENV === 'PRODUCTION') {
     app.use(helmet());
 }
 
