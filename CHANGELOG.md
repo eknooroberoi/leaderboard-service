@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.9] - 2023-11-02
+
+- Update README to add comparison of approaches + detailed info on each approach
+
 ## [0.6.8] - 2023-11-01
 
 - Update consume message from kafka flow diagram image in readme
@@ -27,11 +31,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.6.4] - 2023-10-31
 
-- Remove Github Action for linting, testing and coverage report generation on PRs
+- Remove GitHub Action for linting, testing and coverage report generation on PRs
 
 ## [0.6.3] - 2023-10-31
 
-- Add Github Action for linting, testing and coverage report generation on PRs
+- Add GitHub Action for linting, testing and coverage report generation on PRs
 
 ## [0.6.2] - 2023-10-31
 
@@ -61,7 +65,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.5.2] - 2023-10-29
 
-- Setup github action to run tests + generate coverage report on PRs
+- Setup GitHub action to run tests + generate coverage report on PRs
 
 ## [0.5.1] - 2023-10-29
 
