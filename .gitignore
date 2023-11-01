@@ -17,3 +17,6 @@ devEnv/.tmp
 
 # Test Coverage
 coverage/
+
+# Local Log Files
+*.log

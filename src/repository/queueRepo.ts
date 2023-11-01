@@ -2,6 +2,7 @@ import IQueueRepo from './interfaces/IQueueRepo';
 import IQueueConsumer from '../driver/interfaces/IQueueConsumer';
 import { MessageDTO } from '../models';
 import Ajv, { JSONSchemaType, ValidateFunction } from 'ajv';
+import logger from '../utils/logger';
 
 // TODO:- Implement validation initialisation once in code
 const ajv: Ajv = new Ajv(); // ajv is used for validating json object schema
@@ -54,14 +55,12 @@ export default class QueueRepo implements IQueueRepo {
                             // Note:- we only call `processFn` for valid messages and skip over rest
                             await processFn(message);
                         }
-                    } catch (e) {
-                        // TODO:- Implement custom error for parsing errors
-                        console.log(e);
+                    } catch (err: any) {
+                        logger.error(`Error while parsing msg: ${err.message}`);
                     }
                 }
                 if (!validMsgSchema) {
-                    // TODO:- Implement custom error for validation errors
-                    console.log('Invalid Schema for msg: %s', msg?.toString());
+                    logger.error(`Invalid Schema for msg: ${msg?.toString()}`);
                 }
             }
         );

@@ -3,6 +3,7 @@ import { ILeaderboardService } from '../../services';
 import Ajv, { JSONSchemaType, ValidateFunction } from 'ajv';
 import { RequestQueryParamsDTO, TopScoresDTO } from '../../models';
 import { IController } from '../interfaces/IController';
+import logger from '../../utils/logger';
 
 // TODO :- Have single instance of ajv in the application
 const ajv: Ajv = new Ajv(); // ajv is used for validating json object schema
@@ -56,9 +57,8 @@ class GetTopScoresControllerPublic implements IController {
                 return;
             }
             res.status(200).send(topScores.toJSON());
-        } catch (e) {
-            // TODO:- Add error mapper
-            console.log(e);
+        } catch (err: any) {
+            logger.error(`Error while handling request: ${err.message}`);
             res.status(500).send({ errMsg: 'Internal Server Error' });
         }
     }

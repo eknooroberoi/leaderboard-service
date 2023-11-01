@@ -18,6 +18,17 @@ export interface IConsts {
         location: string;
         defaultTTL: number;
     };
+    loggerConfig: {
+        logLevel: LogLevel;
+    };
+}
+
+export enum LogLevel {
+    DEFAULT = 0,
+    DEBUG = 100,
+    INFO = 200,
+    WARNING = 400,
+    ERROR = 500,
 }
 
 /*
@@ -44,5 +55,8 @@ export const consts: IConsts = {
     memcachedConfig: {
         location: 'localhost:11211',
         defaultTTL: 60, // Default TTL of 60s
+    },
+    loggerConfig: {
+        logLevel: LogLevel.DEBUG, // Make this configurable in production
     },
 };

@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.5] - 2023-11-01
+
+- Replace console logs with required loggers
+- Fix test cases
+
 ## [0.6.4] - 2023-10-31
 
 - Remove Github Action for linting, testing and coverage report generation on PRs

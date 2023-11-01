@@ -4,6 +4,7 @@ import { GameDAO, LeaderboardDAO, TopScorerDAO, UserDAO } from '../models';
 import Ajv, { JSONSchemaType, ValidateFunction } from 'ajv';
 import { wrapInPromise } from '../utils/helpers';
 import Persistable from '../models/DAO/persistable';
+import logger from '../utils/logger';
 
 // TODO :- Have single instance of ajv in the application
 const ajv: Ajv = new Ajv(); // ajv is used for validating json object schema
@@ -89,8 +90,7 @@ export default class DatabaseRepo implements IDatabaseRepo {
             .getRawMany();
 
         if (!DatabaseRepo.topScorersSchemaValidate(topScorersData)) {
-            // TODO:- Implement custom errors and pass to top-level
-            console.log(
+            logger.error(
                 'Could not validate scorers data, returning empty response'
             );
             return wrapInPromise(null);

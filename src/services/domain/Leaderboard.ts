@@ -12,6 +12,7 @@ import IDatabaseRepo from '../../repository/interfaces/IDatabaseRepo';
 import ICacheRepo from '../../repository/interfaces/ICacheRepo';
 import TopScoresDAO from '../../models/DAO/topScoresDAO';
 import { wrapInPromise } from '../../utils/helpers';
+import logger from '../../utils/logger';
 
 class Leaderboard implements ILeaderboard {
     private queueImpl: IQueueRepo;
@@ -26,7 +27,7 @@ class Leaderboard implements ILeaderboard {
         this.queueImpl = queueImpl;
         this.queueImpl
             .startBatchConsumer(this.processMessages)
-            .then(() => console.log('Successfully Started Kafka Consumer'));
+            .then(() => logger.info('Successfully Started Kafka Consumer'));
         this.databaseImpl = databaseImpl;
         this.cacheImpl = cacheImpl;
     }
@@ -59,7 +60,7 @@ class Leaderboard implements ILeaderboard {
         limit: number,
         consistentRead: boolean
     ): Promise<TopScoresDTO | null> {
-        console.log(`Fetching Data for gameId: ${gameId}, limit: ${limit}`);
+        logger.info(`Fetching Data for gameId: ${gameId}, limit: ${limit}`);
         const cacheKey: string = gameId + '---' + limit.toString();
         if (!consistentRead) {
             //Try getting date from cache
@@ -75,14 +76,14 @@ class Leaderboard implements ILeaderboard {
         const gameData: GameDAO | null =
             await this.databaseImpl.getGameData(gameId);
         if (gameData === null) {
-            console.log(`Could not get data for game :- ${gameId}`);
+            logger.info(`Could not get data for game :- ${gameId}`);
             return wrapInPromise(null);
         }
         // Get Top Scorers for Game
         const topScorers: TopScorerDAO[] | null =
             await this.databaseImpl.getTopScorersData(gameId, limit);
         if (topScorers === null) {
-            console.log(`Could not get top ${limit} scorers for ${gameId}`);
+            logger.info(`Could not get top ${limit} scorers for ${gameId}`);
             return wrapInPromise(null);
         }
         const res: TopScoresDTO = new TopScoresDTO(

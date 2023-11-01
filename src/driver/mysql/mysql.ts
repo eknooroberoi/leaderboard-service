@@ -4,6 +4,7 @@ import assert from 'assert';
 import IndexGameScoreUpdatedAt from './1698269779298-IndexCreation';
 import ISQLDataSource from '../interfaces/ISQLDataSource';
 import IDatasource from '../interfaces/IDatasource';
+import logger from '../../utils/logger';
 
 export default class MySQLDataSource implements ISQLDataSource {
     private readonly _ds: IDatasource;
@@ -23,9 +24,9 @@ export default class MySQLDataSource implements ISQLDataSource {
             synchronize: true,
         });
         ds.initialize()
-            .then(() => console.log('Data Source has been initialized!'))
-            .catch((err) =>
-                console.error('Error during Data Source initialization', err)
+            .then(() => logger.info('Data Source has been initialized!'))
+            .catch((err: any) =>
+                logger.error(`Error during Data Source initialization: ${err.message}`)
             );
         this._ds = ds;
     }

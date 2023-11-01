@@ -20,6 +20,11 @@ jest.mock('../../../src/models', () => ({
     LeaderboardDAO: jest.fn(),
 }));
 
+jest.mock('../../../src/utils/logger', () => ({
+    info: jest.fn(),
+    error: jest.fn(),
+}));
+
 describe('MySQLDataSource', () => {
     const mockedMySQLConfig: MySQLConfigDTO = new MySQLConfigDTO(
         'localhost',
