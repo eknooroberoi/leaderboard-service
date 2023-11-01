@@ -26,7 +26,9 @@ export default class MySQLDataSource implements ISQLDataSource {
         ds.initialize()
             .then(() => logger.info('Data Source has been initialized!'))
             .catch((err: any) =>
-                logger.error(`Error during Data Source initialization: ${err.message}`)
+                logger.error(
+                    `Error during Data Source initialization: ${err.message}`
+                )
             );
         this._ds = ds;
     }

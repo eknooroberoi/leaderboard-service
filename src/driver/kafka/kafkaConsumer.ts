@@ -33,7 +33,9 @@ export default class KafkaConsumer implements IQueueConsumer {
                 fromBeginning: kafkaConsumerConfig.fromBeginning,
             })
             .then(() =>
-                logger.info(`Successfully subscribed to topics: ${kafkaConsumerConfig.topics}`)
+                logger.info(
+                    `Successfully subscribed to topics: ${kafkaConsumerConfig.topics}`
+                )
             );
     }
 
@@ -51,7 +53,7 @@ export default class KafkaConsumer implements IQueueConsumer {
         try {
             await this._kafkaConsumerClient.run({
                 eachBatchAutoResolve:
-                this._kafkaConsumerClientConfig.batchAutoResolve,
+                    this._kafkaConsumerClientConfig.batchAutoResolve,
                 eachBatch: async (eachBatchPayload: EachBatchPayload) => {
                     for (const msg of eachBatchPayload.batch.messages) {
                         // At-least Once Consumer Ref :- https://kafka.js.org/docs/consuming#example
@@ -60,11 +62,17 @@ export default class KafkaConsumer implements IQueueConsumer {
                             eachBatchPayload.isStale()
                         )
                             break;
-                        const msgValueBuf: Buffer | null = msg.value;
-                        await processFn(msgValueBuf);
-                        // TODO:- Ensure that we increase offsets only for known errors (validation, parsing)
-                        eachBatchPayload.resolveOffset(msg.offset);
                         await eachBatchPayload.heartbeat();
+                        const msgValueBuf: Buffer | null = msg.value;
+                        try {
+                            await processFn(msgValueBuf);
+                        } catch (err: any) {
+                            logger.error(
+                                `Error while processing msg, not committing offsets(msg will be retried): ${err.message}`
+                            );
+                            continue;
+                        }
+                        eachBatchPayload.resolveOffset(msg.offset);
                     }
                 },
             });

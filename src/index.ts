@@ -22,7 +22,9 @@ closeWithGrace(
     { delay: GRACEFUL_SHUTDOWN_TIMEOUT_IN_MSECS },
     async function ({ err }): Promise<void> {
         if (err) {
-            logger.error(`error occurred while shutting down gracefully: ${err.message}`);
+            logger.error(
+                `error occurred while shutting down gracefully: ${err.message}`
+            );
         }
         await shutdownServer();
     }

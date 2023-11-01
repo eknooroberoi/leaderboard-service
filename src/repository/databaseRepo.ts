@@ -72,7 +72,6 @@ export default class DatabaseRepo implements IDatabaseRepo {
         gameId: string,
         limit: number
     ): Promise<TopScorerDAO[] | null> {
-        // TODO:- Check if need to pass useIndex() to force index;
         const topScorersData = await this._sqlDatabaseImpl
             .getDBImpl()
             .getRepository(LeaderboardDAO)
