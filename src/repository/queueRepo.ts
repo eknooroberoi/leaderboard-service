@@ -40,8 +40,16 @@ export default class QueueRepo implements IQueueRepo {
                 //Perform Validation on msg
                 let validMsgSchema: boolean = false;
                 if (msg !== null) {
-                    try {
-                        const msgValueObj = JSON.parse(msg.toString());
+                        let msgValueObj: object;
+                        try{
+                           msgValueObj  = JSON.parse(msg.toString());
+                        } catch (err: any) {
+                            const wrappedErr: Error = new Error(
+                                `Error while parsing msg: ${err.message}`
+                            );
+                            logger.error(wrappedErr.message);
+                            return; // Just return back in-case of parsing errors so that we move offset fwd
+                        }
                         if (QueueRepo.msgSchemaValidate(msgValueObj)) {
                             validMsgSchema = true;
                             const message: MessageDTO = new MessageDTO(
@@ -53,11 +61,16 @@ export default class QueueRepo implements IQueueRepo {
                                 msgValueObj.tsMs
                             );
                             // Note:- we only call `processFn` for valid messages and skip over rest
-                            await processFn(message);
+                            try{
+                                await processFn(message);
+                            } catch (err: any) {
+                                const wrappedErr: Error = new Error(
+                                    `Error while processing msg: ${err.message}`
+                                );
+                                logger.error(wrappedErr.message);
+                                throw wrappedErr;
+                            }
                         }
-                    } catch (err: any) {
-                        logger.error(`Error while parsing msg: ${err.message}`);
-                    }
                 }
                 if (!validMsgSchema) {
                     logger.error(`Invalid Schema for msg: ${msg?.toString()}`);

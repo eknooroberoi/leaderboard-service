@@ -74,7 +74,6 @@ describe('CacheRepo', () => {
             );
 
             const result: TopScoresDAO | null = await cacheRepo.get('key');
-            // TODO:- Figure out issues with TopScorerDTO serialization
             expect(result?.gameId).toEqual(expectedTopScores?.gameId);
             expect(result?.gameName).toEqual(expectedTopScores?.gameName);
             expect(result?.lastUpdatedAt).toEqual(

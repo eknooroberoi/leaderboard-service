@@ -12,8 +12,12 @@ describe('Memcached', () => {
         60
     );
     const mockedConfig: ConfigDTO = new ConfigDTO();
-    const loggerDebugSpy = jest.spyOn(logger, 'debug').mockImplementation(() => {});
-    const loggerErrorSpy = jest.spyOn(logger, 'error').mockImplementation(() => {});
+    const loggerDebugSpy = jest
+        .spyOn(logger, 'debug')
+        .mockImplementation(() => {});
+    const loggerErrorSpy = jest
+        .spyOn(logger, 'error')
+        .mockImplementation(() => {});
 
     mockedConfig.memcachedConfig = mockedMemcachedConfig;
 

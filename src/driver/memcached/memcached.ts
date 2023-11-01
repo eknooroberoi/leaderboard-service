@@ -23,11 +23,15 @@ export default class Memcached implements ICache {
         return new Promise((resolve, reject): void => {
             this.memcachedClient.get(key, (err, data): void => {
                 if (err) {
-                    logger.error(`Error getting value from Memcache: ${err.message} for key: ${key}`);
+                    logger.error(
+                        `Error getting value from Memcache: ${err.message} for key: ${key}`
+                    );
                     reject(err);
                 } else {
                     if (data) {
-                        logger.debug(`Value retrieved from Memcache for ${key}`);
+                        logger.debug(
+                            `Value retrieved from Memcache for ${key}`
+                        );
                         resolve(data);
                     } else {
                         logger.warn(`Value not found in Memcache for ${key}`);
@@ -45,7 +49,9 @@ export default class Memcached implements ICache {
         }
         this.memcachedClient.set(key, value, ttl, (err, _): void => {
             if (err) {
-                logger.error(`Error setting value in Memcache: ${err} for key: ${key}`);
+                logger.error(
+                    `Error setting value in Memcache: ${err} for key: ${key}`
+                );
             } else {
                 logger.debug(`Value has been set in Memcache for key: ${key}`);
             }

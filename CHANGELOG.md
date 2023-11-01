@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.6] - 2023-11-01
+
+- Add proper error handling while consuming from Kafka
+
 ## [0.6.5] - 2023-11-01
 
 - Replace console logs with required loggers
