@@ -4,7 +4,6 @@ import { MessageDTO } from '../models';
 import Ajv, { JSONSchemaType, ValidateFunction } from 'ajv';
 import logger from '../utils/logger';
 
-// TODO:- Implement validation initialisation once in code
 const ajv: Ajv = new Ajv(); // ajv is used for validating json object schema
 
 export default class QueueRepo implements IQueueRepo {

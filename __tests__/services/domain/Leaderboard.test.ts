@@ -43,6 +43,7 @@ describe('Leaderboard', () => {
         cacheImpl = {
             get: jest.fn(),
             setAsync: jest.fn(),
+            shutdown: jest.fn(),
         } as any;
         leaderboard = new Leaderboard(queueImpl, databaseImpl, cacheImpl);
     });

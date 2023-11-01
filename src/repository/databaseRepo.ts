@@ -6,7 +6,6 @@ import { wrapInPromise } from '../utils/helpers';
 import Persistable from '../models/DAO/persistable';
 import logger from '../utils/logger';
 
-// TODO :- Have single instance of ajv in the application
 const ajv: Ajv = new Ajv(); // ajv is used for validating json object schema
 
 export default class DatabaseRepo implements IDatabaseRepo {

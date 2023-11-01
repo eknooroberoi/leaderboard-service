@@ -3,15 +3,11 @@ import memcached from 'memcached';
 import { ConfigDTO, MemcachedConfigDTO } from '../../../src/models';
 import assert from 'assert';
 import logger from '../../../src/utils/logger';
+import { ICache } from '../../../src/driver';
 
 jest.mock('memcached');
 
 describe('Memcached', () => {
-    const mockedMemcachedConfig: MemcachedConfigDTO = new MemcachedConfigDTO(
-        'localhost:11211',
-        60
-    );
-    const mockedConfig: ConfigDTO = new ConfigDTO();
     const loggerDebugSpy = jest
         .spyOn(logger, 'debug')
         .mockImplementation(() => {});
@@ -19,6 +15,11 @@ describe('Memcached', () => {
         .spyOn(logger, 'error')
         .mockImplementation(() => {});
 
+    const mockedMemcachedConfig: MemcachedConfigDTO = new MemcachedConfigDTO(
+        'localhost:11211',
+        60
+    );
+    const mockedConfig: ConfigDTO = new ConfigDTO();
     mockedConfig.memcachedConfig = mockedMemcachedConfig;
 
     const commandData: memcached.CommandData = {
@@ -30,7 +31,7 @@ describe('Memcached', () => {
         validate: new Array(['test_validate', () => {}]),
     };
 
-    let memcachedInstance: Memcached;
+    let memcachedInstance: ICache;
     let memcachedClientMock: jest.Mocked<memcached>;
 
     beforeEach(() => {
@@ -149,6 +150,13 @@ describe('Memcached', () => {
             expect(loggerDebugSpy).toHaveBeenCalledWith(
                 `Value has been set in Memcache for key: ${key}`
             );
+        });
+    });
+
+    describe('shutdown', () => {
+        it('should destroy the Cache instance', async () => {
+            await memcachedInstance.shutdown();
+            expect(memcachedClientMock.end).toHaveBeenCalled();
         });
     });
 });
