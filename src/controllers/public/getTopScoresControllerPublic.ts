@@ -5,7 +5,6 @@ import { RequestQueryParamsDTO, TopScoresDTO } from '../../models';
 import { IController } from '../interfaces/IController';
 import logger from '../../utils/logger';
 
-// TODO :- Have single instance of ajv in the application
 const ajv: Ajv = new Ajv(); // ajv is used for validating json object schema
 
 class GetTopScoresControllerPublic implements IController {

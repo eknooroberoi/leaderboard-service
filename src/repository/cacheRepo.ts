@@ -7,7 +7,6 @@ import { wrapInPromise } from '../utils/helpers';
 import { TopScoresDTO } from '../models';
 import logger from '../utils/logger';
 
-// TODO :- Have single instance of ajv in the application
 const ajv: Ajv = new Ajv(); // ajv is used for validating json object schema
 
 export default class CacheRepo implements ICacheRepo {
@@ -64,5 +63,9 @@ export default class CacheRepo implements ICacheRepo {
         const stringifiedVal: string = JSON.stringify(value.toJSON());
         //Store stringified value
         this.cacheImpl.setAsync(key, stringifiedVal, ttl);
+    }
+
+    async shutdown(): Promise<void> {
+        await this.cacheImpl.shutdown();
     }
 }

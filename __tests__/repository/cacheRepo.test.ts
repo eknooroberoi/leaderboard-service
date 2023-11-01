@@ -15,6 +15,7 @@ describe('CacheRepo', () => {
         cacheImplMock = {
             get: jest.fn(),
             setAsync: jest.fn(),
+            shutdown: jest.fn(),
         } as jest.Mocked<ICache>;
 
         cacheRepo = new CacheRepo(cacheImplMock);
@@ -100,5 +101,15 @@ describe('CacheRepo', () => {
                 undefined
             );
         });
+    });
+
+    it('should shut down the cache', async () => {
+        const shutdownSpy = jest.spyOn(
+            cacheImplMock,
+            'shutdown'
+        );
+        await cacheRepo.shutdown();
+        expect(shutdownSpy).toHaveBeenCalled();
+        shutdownSpy.mockRestore();
     });
 });

@@ -57,4 +57,11 @@ export default class Memcached implements ICache {
             }
         });
     }
+
+    shutdown(): Promise<void> {
+        return new Promise((resolve): void => {
+            this.memcachedClient.end();
+            resolve();
+        });
+    }
 }

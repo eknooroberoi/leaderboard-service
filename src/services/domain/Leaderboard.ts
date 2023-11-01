@@ -101,6 +101,7 @@ class Leaderboard implements ILeaderboard {
     async shutdown(): Promise<void> {
         await this.queueImpl.shutdown();
         await this.databaseImpl.shutdown();
+        await this.cacheImpl.shutdown();
     }
 }
 
