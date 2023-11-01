@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.8] - 2023-11-01
+
+- Update consume message from kafka flow diagram image in readme
+
 ## [0.6.7] - 2023-11-01
 
 - Implement shutdown hook for graceful shutdown of the service
